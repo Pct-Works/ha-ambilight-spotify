@@ -1,0 +1,109 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Ambilight Spotify",
+        "description": "Choose the media player whose album artwork will drive your lights (for example a SpotifyPlus or Spotify Connect player).",
+        "data": {
+          "media_player": "Media player"
+        }
+      },
+      "lights": {
+        "title": "Lights and behaviour",
+        "description": "Choose the lights that will take the accent colour of the artwork. Only lights that are already on are changed, and their brightness is never touched.",
+        "data": {
+          "target_lights": "Lights",
+          "source_filter": "Only for these playback sources",
+          "require_entity": "Only while this entity is on",
+          "default_color": "Default colour",
+          "transition": "Transition"
+        },
+        "data_description": {
+          "target_lights": "Lights that receive the colour.",
+          "source_filter": "Optional. Only sync while the player's source (for example the Spotify Connect device) is one of these. Leave empty to sync with any source.",
+          "require_entity": "Optional. Only sync while this entity is on, for example a group of all your lights.",
+          "default_color": "Optional. Colour applied to the lights when the sync stops (switch turned off, playback stopped...). Leave empty to keep the last colour.",
+          "transition": "Seconds the lights take to change colour."
+        }
+      }
+    },
+    "error": {
+      "no_lights": "Select at least one light."
+    },
+    "abort": {
+      "already_configured": "This media player is already configured."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Lights and behaviour",
+        "description": "Only lights that are already on are changed, and their brightness is never touched.",
+        "data": {
+          "target_lights": "Lights",
+          "source_filter": "Only for these playback sources",
+          "require_entity": "Only while this entity is on",
+          "default_color": "Default colour",
+          "transition": "Transition"
+        },
+        "data_description": {
+          "target_lights": "Lights that receive the colour.",
+          "source_filter": "Optional. Only sync while the player's source (for example the Spotify Connect device) is one of these. Leave empty to sync with any source.",
+          "require_entity": "Optional. Only sync while this entity is on, for example a group of all your lights.",
+          "default_color": "Optional. Colour applied to the lights when the sync stops (switch turned off, playback stopped...). Leave empty to keep the last colour.",
+          "transition": "Seconds the lights take to change colour."
+        }
+      }
+    },
+    "error": {
+      "no_lights": "Select at least one light."
+    }
+  },
+  "entity": {
+    "switch": {
+      "ambilight": { "name": "Ambilight" }
+    },
+    "select": {
+      "mode": {
+        "name": "Colour mode",
+        "state": {
+          "vibrant": "Vibrant",
+          "pastel": "Pastel",
+          "faithful": "Faithful to artwork",
+          "intense": "Intense / Dramatic"
+        }
+      }
+    },
+    "number": {
+      "brightness_min": { "name": "Minimum brightness" },
+      "saturation_min": { "name": "Minimum saturation" }
+    },
+    "sensor": {
+      "accent_color": { "name": "Accent colour" }
+    },
+    "binary_sensor": {
+      "syncing": { "name": "Syncing" }
+    }
+  },
+  "exceptions": {
+    "entry_not_found": {
+      "message": "No loaded Ambilight Spotify entry with id {entry_id}."
+    }
+  },
+  "services": {
+    "apply": {
+      "name": "Apply colour",
+      "description": "Re-sends the current accent colour to the lights, or the default colour if the sync is not active. Call it from your own automations, for example after a scene changes.",
+      "fields": {
+        "config_entry_id": {
+          "name": "Entry",
+          "description": "Which Ambilight Spotify entry to apply. Leave empty to apply all of them."
+        },
+        "entity_id": {
+          "name": "Lights",
+          "description": "Apply to these lights instead of the configured ones. Useful when your scenes decide which lights should follow the music."
+        }
+      }
+    }
+  }
+}

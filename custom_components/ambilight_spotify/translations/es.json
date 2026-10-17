@@ -1,0 +1,109 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Ambilight Spotify",
+        "description": "Elige el reproductor multimedia cuya portada controlará tus luces (por ejemplo un reproductor de SpotifyPlus o Spotify Connect).",
+        "data": {
+          "media_player": "Reproductor multimedia"
+        }
+      },
+      "lights": {
+        "title": "Luces y comportamiento",
+        "description": "Elige las luces que tomarán el color de énfasis de la portada. Solo se cambian las luces que ya están encendidas y nunca se toca su brillo.",
+        "data": {
+          "target_lights": "Luces",
+          "source_filter": "Solo para estas fuentes de reproducción",
+          "require_entity": "Solo mientras esta entidad esté encendida",
+          "default_color": "Color por defecto",
+          "transition": "Transición"
+        },
+        "data_description": {
+          "target_lights": "Luces que reciben el color.",
+          "source_filter": "Opcional. Sincroniza solo mientras la fuente del reproductor (por ejemplo el dispositivo de Spotify Connect) sea una de estas. Déjalo vacío para cualquier fuente.",
+          "require_entity": "Opcional. Sincroniza solo mientras esta entidad esté encendida, por ejemplo un grupo con todas tus luces.",
+          "default_color": "Opcional. Color que se aplica a las luces cuando la sincronización se detiene (interruptor apagado, reproducción parada...). Déjalo vacío para conservar el último color.",
+          "transition": "Segundos que tardan las luces en cambiar de color."
+        }
+      }
+    },
+    "error": {
+      "no_lights": "Selecciona al menos una luz."
+    },
+    "abort": {
+      "already_configured": "Este reproductor ya está configurado."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Luces y comportamiento",
+        "description": "Solo se cambian las luces que ya están encendidas y nunca se toca su brillo.",
+        "data": {
+          "target_lights": "Luces",
+          "source_filter": "Solo para estas fuentes de reproducción",
+          "require_entity": "Solo mientras esta entidad esté encendida",
+          "default_color": "Color por defecto",
+          "transition": "Transición"
+        },
+        "data_description": {
+          "target_lights": "Luces que reciben el color.",
+          "source_filter": "Opcional. Sincroniza solo mientras la fuente del reproductor (por ejemplo el dispositivo de Spotify Connect) sea una de estas. Déjalo vacío para cualquier fuente.",
+          "require_entity": "Opcional. Sincroniza solo mientras esta entidad esté encendida, por ejemplo un grupo con todas tus luces.",
+          "default_color": "Opcional. Color que se aplica a las luces cuando la sincronización se detiene (interruptor apagado, reproducción parada...). Déjalo vacío para conservar el último color.",
+          "transition": "Segundos que tardan las luces en cambiar de color."
+        }
+      }
+    },
+    "error": {
+      "no_lights": "Selecciona al menos una luz."
+    }
+  },
+  "entity": {
+    "switch": {
+      "ambilight": { "name": "Ambilight" }
+    },
+    "select": {
+      "mode": {
+        "name": "Modo de color",
+        "state": {
+          "vibrant": "Vibrante",
+          "pastel": "Pastel",
+          "faithful": "Fiel a la portada",
+          "intense": "Intenso / Dramático"
+        }
+      }
+    },
+    "number": {
+      "brightness_min": { "name": "Brillo mínimo" },
+      "saturation_min": { "name": "Saturación mínima" }
+    },
+    "sensor": {
+      "accent_color": { "name": "Color de énfasis" }
+    },
+    "binary_sensor": {
+      "syncing": { "name": "Sincronizando" }
+    }
+  },
+  "exceptions": {
+    "entry_not_found": {
+      "message": "No hay ninguna entrada cargada de Ambilight Spotify con id {entry_id}."
+    }
+  },
+  "services": {
+    "apply": {
+      "name": "Aplicar color",
+      "description": "Reenvía a las luces el color de énfasis actual, o el color por defecto si la sincronización no está activa. Llámalo desde tus propias automatizaciones, por ejemplo al cambiar de escena.",
+      "fields": {
+        "config_entry_id": {
+          "name": "Entrada",
+          "description": "Qué entrada de Ambilight Spotify aplicar. Déjalo vacío para aplicarlas todas."
+        },
+        "entity_id": {
+          "name": "Luces",
+          "description": "Aplicar a estas luces en vez de a las configuradas. Útil cuando tus escenas deciden qué luces siguen la música."
+        }
+      }
+    }
+  }
+}

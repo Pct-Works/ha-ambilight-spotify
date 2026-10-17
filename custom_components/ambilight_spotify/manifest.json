@@ -1,0 +1,13 @@
+{
+  "domain": "ambilight_spotify",
+  "name": "Ambilight Spotify",
+  "codeowners": ["@Pct-Works"],
+  "config_flow": true,
+  "dependencies": ["media_player", "light"],
+  "documentation": "https://github.com/Pct-Works/ha-ambilight-spotify",
+  "integration_type": "service",
+  "iot_class": "local_push",
+  "issue_tracker": "https://github.com/Pct-Works/ha-ambilight-spotify/issues",
+  "requirements": ["Pillow>=10.0.0"],
+  "version": "0.1.0"
+}

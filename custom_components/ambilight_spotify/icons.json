@@ -1,0 +1,23 @@
+{
+  "entity": {
+    "switch": {
+      "ambilight": { "default": "mdi:led-strip-variant" }
+    },
+    "select": {
+      "mode": { "default": "mdi:palette-swatch" }
+    },
+    "number": {
+      "brightness_min": { "default": "mdi:brightness-6" },
+      "saturation_min": { "default": "mdi:opacity" }
+    },
+    "sensor": {
+      "accent_color": { "default": "mdi:palette" }
+    },
+    "binary_sensor": {
+      "syncing": { "default": "mdi:sync" }
+    }
+  },
+  "services": {
+    "apply": { "service": "mdi:lightbulb-on-color" }
+  }
+}

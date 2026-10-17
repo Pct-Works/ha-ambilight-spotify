@@ -1,0 +1,13 @@
+apply:
+  fields:
+    config_entry_id:
+      required: false
+      selector:
+        config_entry:
+          integration: ambilight_spotify
+    entity_id:
+      required: false
+      selector:
+        entity:
+          domain: light
+          multiple: true
